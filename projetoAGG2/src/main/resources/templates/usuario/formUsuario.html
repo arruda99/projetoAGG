@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+<title>Formulário</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+	<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
+</head>
+<body>
+	 <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">AGG</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="#">Área do Usuario</a></li>
+        <li><a href="#">Prestador Serviço</a></li>
+      </ul>
+    </div>
+  </nav>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<form class="container" method="post" action="#" th:action="@{/usuario/adcionar}" th:object="${usuario}">
+	
+	
+	
+	<br/>
+	<div class="row">
+        <div class="col s10 ">
+        	<div class="card">
+        		<div class="card-action teal lighten-1 white-text">
+			     <h3>Cadastro Usuário</h3>
+			     </div>
+			     
+			     <div class="card-content" style="padding:80px">   
+			        
+			        <div class="input-field col s4">
+			          <input  id="nome" type="text" class="validate" th:field="*{nome}"/>
+			          <label for="nome">Nome</label>
+						        </div>
+			        <div class="input-field col s4">
+			          <input id="cpf" type="text" class="validate" th:field="*{cpf}"/>
+			          <label for="cpf">CPF</label>
+			        </div>
+			     
+			      
+			        <div class="input-field col s4">
+			          <input  id="endereco" type="text" class="validate" th:field="*{endereco}"/>
+			          <label for="endereco">Endereço</label>
+			        </div>
+			        <div class="input-field col s4">
+			          <input id="telefone" type="text" class="validate" th:field=*{telefone}/>
+			          <label for="telefone">Telefone</label>
+			        </div>
+			      
+			      
+			        <div class="input-field col s4">
+			          <input  id="email" type="text" class="validate" th:field="*{email}"/>
+			          <label for="email">Email</label>
+			        </div>
+			        <div class="input-field col s4">
+			          <input id="senha" type="text" class="validate" th:field="*{senha}"/>
+			          <label for="senha">Senha</label>
+			        </div>
+			      <div class="" >
+			     
+			      <a th:href="@{/usuario/login}" class="waves-effect waves-light btn" style="margin-left:50px;margin-top:30px">Voltar</a>
+			      <input type="submit" class="btn large waves effect waves-dark" style="margin-left:50px;margin-top:30px" value="Cadastrar"/>	
+			      		</div>
+			      		
+		</div>	     		
+      	</div>
+      </div>
+      
+      </div>
+	
+
+	</form>
+	
+	
+	
+	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+</body>
+</html>

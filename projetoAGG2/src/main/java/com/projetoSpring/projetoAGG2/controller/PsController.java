@@ -9,8 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.projetoSpring.projetoAGG2.model.PServico;
 import com.projetoSpring.projetoAGG2.model.Servico;
-import com.projetoSpring.projetoAGG2.repository.PServicoRepository;
 import com.projetoSpring.projetoAGG2.repository.ServicoRepository;
+import com.projetoSpring.projetoAGG2.service.PServicoService;
 
 @Controller
 @RequestMapping("/pservico")
@@ -18,15 +18,19 @@ public class PsController {
 
 	
 	@Autowired
-	private PServicoRepository repository;
+	private PServicoService service;
 	@Autowired
 	private ServicoRepository svRepository;
 	
 	@GetMapping("/login")
 	public ModelAndView log() {
-		return new ModelAndView("pServico/pServico");
+		ModelAndView mv = new  ModelAndView("pServico/pServico");
 		
+		PServico ps = new PServico();
+		ps.setServico(new Servico());
+		mv.addObject("pservico", ps);
 		
+		return mv;
 	}
 	
 	@GetMapping("/cadastro")
@@ -41,10 +45,27 @@ public class PsController {
 	}
 	
 	@PostMapping("/adcionar")
-	public String salvar(PServico pservico) {
-		repository.saveAndFlush(pservico);
+	public ModelAndView salvar(PServico pservico) {
+		service.save(pservico);
 		
-		return "pServico/pServico";
+		return log();
+		
+	}
+	
+	@PostMapping("/log")
+	public ModelAndView login(PServico pservico) {
+		ModelAndView mv = new ModelAndView("pServico/menu");
+		mv.addObject("pservico", pservico);
+		
+		if(service.logn(pservico.getCpf(), pservico.getSenha())!=null) { 
+				
+			return  mv;
+			
+		}else {
+			
+			return log();
+		}
+		
 		
 	}
 	

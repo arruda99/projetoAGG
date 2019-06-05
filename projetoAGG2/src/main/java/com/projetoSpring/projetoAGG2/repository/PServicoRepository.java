@@ -8,4 +8,8 @@ import com.projetoSpring.projetoAGG2.model.PServico;
 @Repository
 public interface PServicoRepository extends JpaRepository<PServico, Long> {
 
+	
+	public PServico findByCpfAndSenha(Long cpf , String nome);
+
+
 }

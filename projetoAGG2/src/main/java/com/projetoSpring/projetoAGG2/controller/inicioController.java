@@ -17,15 +17,15 @@ public class inicioController {
 		
 		return "lul";
 	}
-	@RequestMapping("/teste")
+	@RequestMapping("/teste11")
 	public String lal() {
 		
 		return "cliente/formUsuario";
 	}
 	
-	@RequestMapping("/teste2")
+	@RequestMapping("/teste")
 	public String lil() {
 		
-		return "pServico/formPS";
+		return "pServico/menu";
 	}
 }

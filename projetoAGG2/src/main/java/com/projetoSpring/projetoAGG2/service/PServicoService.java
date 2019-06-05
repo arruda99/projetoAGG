@@ -9,21 +9,27 @@ import com.projetoSpring.projetoAGG2.model.PServico;
 import com.projetoSpring.projetoAGG2.repository.PServicoRepository;
 
 @Service
-public class PServicoService {
+public class PServicoService   {
 
 	@Autowired
-	private PServicoRepository repository;
+	private PServicoRepository PSrepository;
 
 	public PServico save(PServico ps) {
-		return repository.saveAndFlush(ps);
+		return PSrepository.saveAndFlush(ps);
 
 	}
 	public void delete(Long cpf) {
-		repository.deleteById(cpf);
+		PSrepository.deleteById(cpf);
 	}
 	
 	public List<PServico> findAll(){
-		return repository.findAll();
+		return PSrepository.findAll();
 		
 	}
+	
+	public PServico logn(Long cpf , String nome) {
+		return PSrepository.findByCpfAndSenha(cpf, nome);
+	} 
+	 
 }
+ 

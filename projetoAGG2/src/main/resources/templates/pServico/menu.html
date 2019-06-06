@@ -29,8 +29,8 @@
     </div>
     <div class="nav-content">
       <ul class="tabs tabs-transparent">
-       <li class="tab"><a href="#" data-target="slide-out" class="sidenav-trigger">Menu</a></li>
-        <li class="tab"><a href="#test1" class="sidenav-trigger">Test 1</a></li>
+       <li class="tab"><a href="#" data-target="slide-out" class="sidenav-trigger"></a></li>
+        <li class="tab"><a href="#test1" class="sidenav-trigger"></a></li>
         
          </ul>
     </div>
@@ -45,21 +45,31 @@
    	
    	
    	<div style="background-color:#f3989b;margin-top:-30px;">
-   
-   	   	<a th:text="${pservico.nome}"></a>
-   	   	<a>AAA</a>
+		
+		<p>Nome: <span th:text="${session.teste.nome}"></span></p>
+		<p>Profissão: <span ></span></p>
+		<p>Endereço<span th:text="${session.teste.endereco}"></span></p>
+		<p>Telefone:<span th:text="${session.teste.telefone}"></span></p>
+		<p>Telefone:<span th:text="${session.teste.cpf}"></span></p>
+		
+		
+		
+		
+		   
+   	   	
    	   	
    	
    	</div>
    	
-   	<li><button class="waves-effect waves-transparent btn" style="width: 200px;text-align:center;">Menu</button></li>
+   	<li><a th:href="@{/pservico/alt}"   class="waves-effect waves-transparent btn" style="width: 200px;text-align:center">Alterar Dados</a></li>
+   	
    	<div class="divider"></div>
    	   	<div class="divider"></div>
    	   	<div class="divider"></div>
    	   	<div class="divider"></div>
    	
    	
-   	<li><button class="waves-effect waves-transparent btn" style="width: 200px;text-align:center;">Menu</button></li>
+   	<li><button class="waves-effect waves-transparent btn" style="width: 200px;text-align:center;">Historico</button></li>
 	<div class="divider"></div>
    	   	<div class="divider"></div>
    	   	<div class="divider"></div>
@@ -85,9 +95,10 @@
 				<h5 style="margin-top:3px;">Buscar Serviços</h5>
 				
 				</div>
-				<select>
-				<option>AAA</option>
-								<option>AAA</option>
+				
+				<select >
+				<option th:each="servico: ${servicos}" th:text="${servico.nome}" th:value="${servico.id}"></option>
+								
 				
 				
 				</select>

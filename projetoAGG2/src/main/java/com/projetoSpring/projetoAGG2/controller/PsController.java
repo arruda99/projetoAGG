@@ -1,7 +1,10 @@
 package com.projetoSpring.projetoAGG2.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,20 +56,32 @@ public class PsController {
 	}
 	
 	@PostMapping("/log")
-	public ModelAndView login(PServico pservico) {
+	public ModelAndView login(PServico pservico,Model model,HttpSession session) {
 		ModelAndView mv = new ModelAndView("pServico/menu");
-		mv.addObject("pservico", pservico);
-		
+		PServico ps = service.login(pservico.getCpf());
+		mv.addObject("servicos", svRepository.findAll());
+		session.setAttribute("teste", ps);
 		if(service.logn(pservico.getCpf(), pservico.getSenha())!=null) { 
-				
+			
 			return  mv;
 			
 		}else {
-			
+			model.addAttribute("loginInvalido", true);
 			return log();
+			
 		}
 		
 		
+		
+	}
+	@GetMapping("/alt")
+	public ModelAndView alt(Model model) {
+		ModelAndView mv = new ModelAndView("pServico/altPs");
+		///PServico ps = new PServico();
+		//mv.addObject("pservico", ps);
+		mv.addObject("servicos", svRepository.findAll());
+		
+		return mv;
 	}
 	
 	

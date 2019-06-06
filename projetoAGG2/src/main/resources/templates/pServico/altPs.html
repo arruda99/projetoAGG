@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+<title>Formulário</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+	<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	 <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">AGG</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Área do Usuario</a></li>
+        <li><a href="#">Prestador Serviço</a></li>
+      </ul>
+    </div>
+  </nav>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+		<form class="container" method="" th:object="${pservico}"  action="#">
+	
+	
+	
+	<br/>
+	<div class="row">
+        <div class="col s10 ">
+        	<div class="card">
+        		<div class="card-action teal lighten-1 white-text">
+			     <h3>Cadastro</h3>
+			     </div>
+			     
+			     <div class="card-content" style="padding:80px">   
+			        
+			        <div class="input-field col s4">
+			          <input  id="nome" type="text" class="validate" th:value="${session.teste.nome}" />
+			          <label for="nome">Nome</label>
+						        </div>
+			        <div class="input-field col s4">
+			          <input id="cpf" type="number" class="validate" th:value="${session.teste.cpf}"/>
+			          <label for="cpf">CPF</label>
+			        </div>
+			     
+			      
+			        <div class="input-field col s4">
+			          <input  id="endereco" type="text" class="validate" th:value="${session.teste.endereco}" />
+			          <label for="endereco">Endereço</label>
+			        </div>
+			        <div class="input-field col s4">
+			          <input id="telefone" type="number" class="validate" th:value="${session.teste.telefone}" />
+			          <label for="telefone">Telefone</label>
+			        </div>
+			      
+			      
+			        <div class="input-field col s4">
+			          <input  id="email" type="email" class="validate" th:value="${session.teste.email}"/>
+			          <label for="email">Email</label>
+			        </div>
+			        <div class="input-field col s4">
+			          <input id="senha" type="password" class="validate" th:value="${session.teste.senha}" />
+			          <label for="senha">Senha</label>
+			        </div>
+					<div class="input-field col s6">
+					    <select th:field="*{servico.id}">
+					      
+					      <option th:each="servico: ${servicos}" th:text="${servico.nome}" th:value="${servico.id}"></option>
+					    </select>
+					    <label>Serviços</label>
+					  </div>
+					  <div class="row"></div>
+			      
+			      <div class="" >
+			      
+			      <a class="waves-effect waves-light btn" style="margin-left:50px;margin-top:30px" href="javascript:history.back()">Voltar</a>
+			      <input type="submit" class="btn large waves effect waves-dark" style="margin-left:50px;margin-top:30px" value="Cadastrar"/>	
+			      		</div>
+			      		
+		</div>	     		
+      	</div>
+      </div>
+      
+      </div>
+	
+
+	</form>
+	
+	
+	
+	<script type="text/javascript" src="/materialize/js/materialize.min.js">
+	
+	</script>
+	<script>
+	$(document).ready(function(){
+	    $('select').formSelect();
+	  });
+	
+	</script>
+</body>
+</html>

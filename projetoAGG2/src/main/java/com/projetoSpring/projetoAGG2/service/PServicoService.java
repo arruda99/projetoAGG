@@ -30,6 +30,9 @@ public class PServicoService   {
 	public PServico logn(Long cpf , String nome) {
 		return PSrepository.findByCpfAndSenha(cpf, nome);
 	} 
+	public PServico login(Long cpf) {
+		return PSrepository.findByCpf(cpf);
+	}
 	 
 }
  

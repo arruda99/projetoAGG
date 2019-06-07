@@ -26,7 +26,7 @@
 	<br/>
 	<br/>
 	<br/>
-		<form class="container" method="post" th:action="@{/pservico/adcionar}" th:object="${pservico}" action="#">
+		<form class="container" method="post" th:object="${usuario}"  action="#" th:action="@{/usuario/alterar}">
 	
 	
 	
@@ -35,52 +35,45 @@
         <div class="col s10 ">
         	<div class="card">
         		<div class="card-action teal lighten-1 white-text">
-			     <h3>Cadastro</h3>
+			     <h3>Alterar Dados</h3>
 			     </div>
-			     
+			     <input type="radio" name="radiobt" th:value="${session.usuario.id}" style="display:none"/>
 			     <div class="card-content" style="padding:80px">   
 			        
 			        <div class="input-field col s4">
-			          <input  id="nome" type="text" class="validate" th:field="*{nome}"/>
+			          <input  id="nome" type="text" class="validate" th:value="${session.usuario.nome}" th:field="*{nome}" />
 			          <label for="nome">Nome</label>
 						        </div>
 			        <div class="input-field col s4">
-			          <input id="cpf" type="number" class="validate" th:field="*{cpf}"/>
+			          <input id="cpf" type="number" class="validate" th:value="${session.usuario.cpf}" th:field="*{cpf}" />
 			          <label for="cpf">CPF</label>
 			        </div>
 			     
 			      
 			        <div class="input-field col s4">
-			          <input  id="endereco" type="text" class="validate" th:field="*{endereco}"/>
+			          <input  id="endereco" type="text" class="validate" th:value="${session.usuario.endereco}" th:field="*{endereco}"  />
 			          <label for="endereco">Endereço</label>
 			        </div>
 			        <div class="input-field col s4">
-			          <input id="telefone" type="number" class="validate" th:field="*{telefone}"/>
+			          <input id="telefone" type="number" class="validate" th:value="${session.usuario.telefone}" th:field="*{telefone}"  />
 			          <label for="telefone">Telefone</label>
 			        </div>
 			      
 			      
 			        <div class="input-field col s4">
-			          <input  id="email" type="email" class="validate" th:field="*{email}"/>
+			          <input  id="email" type="email" class="validate" th:value="${session.usuario.email}" th:field="*{email}" />
 			          <label for="email">Email</label>
 			        </div>
 			        <div class="input-field col s4">
-			          <input id="senha" type="password" class="validate" th:field="*{senha}"/>
+			          <input id="senha" type="password" class="validate" th:value="${session.usuario.senha}" th:field="*{senha}"  />
 			          <label for="senha">Senha</label>
 			        </div>
-					<div class="input-field col s6">
-					    <select th:field="*{servico.id}">
-					      
-					      <option th:each="servico: ${servicos}" th:text="${servico.nome}" th:value="${servico.id}"></option>
-					    </select>
-					    <label>Serviços</label>
-					  </div>
-					  <div class="row"></div>
+					
 			      
 			      <div class="" >
 			      
 			      <a class="waves-effect waves-light btn" style="margin-left:50px;margin-top:30px" href="javascript:history.back()">Voltar</a>
-			      <input type="submit" class="btn large waves effect waves-dark" style="margin-left:50px;margin-top:30px" value="Cadastrar"/>	
+			      <input type="submit" class="btn large waves effect waves-dark" style="margin-left:50px;margin-top:30px" value="Alterar"/>	
 			      		</div>
 			      		
 		</div>	     		

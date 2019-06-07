@@ -34,5 +34,8 @@ public class PServicoService   {
 		return PSrepository.findByCpf(cpf);
 	}
 	 
+	public List<PServico> findByIdServico(Long id){
+		return PSrepository.findByServicoId(id);
+	}
 }
  

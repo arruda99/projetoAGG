@@ -25,7 +25,7 @@
 	<br/>
 	<br/>
 	<br/>
-	<form class="container" method="post" action="#" th:action="@{/usuario/adcionar}" th:object="${usuario}">
+	<form class="container" method="post" action="#" th:action="@{/usuario/}" th:object="${usuario}">
 	
 	
 	
@@ -69,8 +69,10 @@
 			        </div>
 			      <div class="" >
 			     
-			      <a th:href="@{/usuario/login}" class="waves-effect waves-light btn" style="margin-left:50px;margin-top:30px">Voltar</a>
+			      			      <a class="waves-effect waves-light btn" style="margin-left:50px;margin-top:30px" href="javascript:history.back()">Voltar</a>
+			      
 			      <input type="submit" class="btn large waves effect waves-dark" style="margin-left:50px;margin-top:30px" value="Cadastrar"/>	
+			      
 			      		</div>
 			      		
 		</div>	     		

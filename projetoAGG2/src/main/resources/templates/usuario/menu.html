@@ -46,11 +46,10 @@
    	
    	<div style="background-color:#f3989b;margin-top:-30px;">
 		
-		<p>Nome: <span th:text="${session.teste.nome}"></span></p>
-		<p>Profissão: <span ></span></p>
-		<p>Endereço<span th:text="${session.teste.endereco}"></span></p>
-		<p>Telefone:<span th:text="${session.teste.telefone}"></span></p>
-		<p>Telefone:<span th:text="${session.teste.cpf}"></span></p>
+		<p>Nome: <span th:text="${session.usuario.nome}"></span></p>
+		<p>Endereço<span th:text="${session.usuario.endereco}"></span></p>
+		<p>Telefone:<span th:text="${session.usuario.telefone}"></span></p>
+		<p>Cpf:<span th:text="${session.usuario.cpf}"></span></p>
 		
 		
 		
@@ -61,7 +60,7 @@
    	
    	</div>
    	
-   	<li><a th:href="@{/pservico/alt}"   class="waves-effect waves-transparent btn" style="width: 200px;text-align:center">Alterar Dados</a></li>
+   	<li><a th:href="@{/usuario/alt}"   class="waves-effect waves-transparent btn" style="width: 200px;text-align:center">Alterar Dados</a></li>
    	
    	<div class="divider"></div>
    	   	<div class="divider"></div>
@@ -106,9 +105,13 @@
 					
 			</div>
 				
+				<br>
+				   	<a th:href="@{/usuario/buscar}"   class="waves-effect waves-transparent btn" style="width: 200px;margin-left:120px;text-align:center">Buscar</a>
 				
-				
+			
 			</div>
+			
+			
 		</div>
 		
  

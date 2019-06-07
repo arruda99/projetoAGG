@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/materialize.min.css" media="screen,projection" />
+
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<style type="text/css">
+
+</style>
+
+
+</head>
+<body>
+	 <nav class="nav-extended">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">AGG</a>
+      
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="sass.html">Inicio</a></li>
+        <li><a href="badges.html">Usuário</a></li>
+        <li><a href="collapsible.html">PS</a></li>
+      </ul>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent">
+       <li class="tab"><a href="#" data-target="slide-out" class="sidenav-trigger"></a></li>
+        <li class="tab"><a href="#test1" class="sidenav-trigger"></a></li>
+        
+         </ul>
+    </div>
+   
+         
+  </nav>
+
+<br>
+<br>
+<br>
+
+<select>
+					      
+					      <option th:each="pservico: ${pservicos}" th:text="${pservico.nome}" th:value="${pservico.id}"></option>
+					    </select>
+<div th:each="pservico :${pservicos}" >
+<form method="post" th:action="@{/usuario/contratar}" th:object="${pservico}" >
+<fieldset>
+
+<input type="radio" name="id" value=""/>Clique aqui para escolher
+        <input name="group1" type="radio" checked />
+
+<p><b>Nome:<span th:text="${pservico.nome}"></span></b></p>
+<p><b>Endereco:<span th:text="${pservico.endereco}"></span></b></p>
+<p><b>Email:<span th:text="${pservico.email}"></span></b></p>
+<p><b>Telefone:<span th:text="${pservico.telefone}"></span></b></p>
+<input type="hidden" name="" value="${pservico.cpf}">
+<a th:href="@{/usuario/contratar}"   class="waves-effect waves-transparent btn" style="width: 200px;margin-left:120px;text-align:center">Contratar</a>
+
+</fieldset>
+</form>
+</div>
+
+
+
+
+ <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+ 
+	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+	
+	
+  
+
+</body>
+</html>

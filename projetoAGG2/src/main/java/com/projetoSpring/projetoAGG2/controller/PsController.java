@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.projetoSpring.projetoAGG2.model.PServico;
 import com.projetoSpring.projetoAGG2.model.Servico;
+import com.projetoSpring.projetoAGG2.repository.PServicoRepository;
 import com.projetoSpring.projetoAGG2.repository.ServicoRepository;
 import com.projetoSpring.projetoAGG2.service.PServicoService;
 
@@ -19,25 +20,25 @@ import com.projetoSpring.projetoAGG2.service.PServicoService;
 @RequestMapping("/pservico")
 public class PsController {
 
-	
+	private PServicoRepository repo;
 	@Autowired
 	private PServicoService service;
 	@Autowired
 	private ServicoRepository svRepository;
 	
-	@GetMapping("/login")
-	public ModelAndView log() {
+	@GetMapping("/")
+	public ModelAndView montarLogin() {
 		ModelAndView mv = new  ModelAndView("pServico/pServico");
 		
 		PServico ps = new PServico();
-		ps.setServico(new Servico());
+		//ps.setServico(new Servico());
 		mv.addObject("pservico", ps);
 		
 		return mv;
 	}
 	
 	@GetMapping("/cadastro")
-	public ModelAndView cadastro() {
+	public ModelAndView montarCadastro() {
 		ModelAndView mv = new ModelAndView("pServico/formPS");
 		PServico ps = new PServico();
 		ps.setServico(new Servico());
@@ -51,15 +52,16 @@ public class PsController {
 	public ModelAndView salvar(PServico pservico) {
 		service.save(pservico);
 		
-		return log();
+		return montarLogin();
 		
 	}
 	
-	@PostMapping("/log")
+	@PostMapping("/login")
 	public ModelAndView login(PServico pservico,Model model,HttpSession session) {
 		ModelAndView mv = new ModelAndView("pServico/menu");
 		PServico ps = service.login(pservico.getCpf());
 		mv.addObject("servicos", svRepository.findAll());
+		
 		session.setAttribute("teste", ps);
 		if(service.logn(pservico.getCpf(), pservico.getSenha())!=null) { 
 			
@@ -67,7 +69,7 @@ public class PsController {
 			
 		}else {
 			model.addAttribute("loginInvalido", true);
-			return log();
+			return montarLogin();
 			
 		}
 		
@@ -75,13 +77,23 @@ public class PsController {
 		
 	}
 	@GetMapping("/alt")
-	public ModelAndView alt(Model model) {
+	public ModelAndView montarAlt(Model model,HttpSession session) {
 		ModelAndView mv = new ModelAndView("pServico/altPs");
-		///PServico ps = new PServico();
-		//mv.addObject("pservico", ps);
+		PServico ps = (PServico	)session.getAttribute("teste");
+		mv.addObject("pservico", ps);
 		mv.addObject("servicos", svRepository.findAll());
 		
 		return mv;
+	}
+	@PostMapping("/alterar")
+	public ModelAndView alterar(PServico pservico, HttpSession session) {
+		//pservico.setCpf(pservico.getCpf());
+		PServico ps = (PServico) session.getAttribute("teste");
+		//ModelAndView mv = new ModelAndView();
+		pservico.setId(ps.getId());
+		service.save(pservico);
+		session.setAttribute("teste",pservico );
+		return new ModelAndView("pServico/menu");
 	}
 	
 	

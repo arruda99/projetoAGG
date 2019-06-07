@@ -13,9 +13,9 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo right">AGG</a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Área do Usuario</a></li>
-        <li><a href="#">Prestador Serviço</a></li>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/usuario/">Área do Usuario</a></li>
+        <li><a href="/pservico/">Prestador Serviço</a></li>
       </ul>
     </div>
   </nav>
@@ -27,7 +27,7 @@
   <br>
   <br>
   <br>
-	<form method="post" th:action="@{/pservico/log}" th:object="${pservico}" action="#">
+	<form method="post" th:action="@{/pservico/login}" th:object="${pservico}" action="#">
 	<div class="row" style="">
 		<div class="col s12 m4 offset-m4">
 			<div class="card">

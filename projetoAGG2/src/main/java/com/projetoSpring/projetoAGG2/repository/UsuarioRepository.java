@@ -11,5 +11,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	
 	public Usuario findByCpf(Long Cpf);
 	public Usuario findByCpfAndSenha(Long cpf , String nome);
+	
 
 }

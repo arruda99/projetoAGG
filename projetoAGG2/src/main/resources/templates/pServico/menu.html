@@ -47,7 +47,7 @@
    	<div style="background-color:#f3989b;margin-top:-30px;">
 		
 		<p>Nome: <span th:text="${session.teste.nome}"></span></p>
-		<p>Profissão: <span ></span></p>
+		<p>Profissão: <span th:text="${session.teste.servico.nome}" ></span></p>
 		<p>Endereço<span th:text="${session.teste.endereco}"></span></p>
 		<p>Telefone:<span th:text="${session.teste.telefone}"></span></p>
 		<p>Telefone:<span th:text="${session.teste.cpf}"></span></p>
@@ -87,7 +87,7 @@
 	
   
 </div>
-
+<form class="container" method="post" th:action="@{/usuario/buscar}" th:object="${servico}" action="#">
  <div class="row" style="">
 		<div class="col s12 m3 offset-m3">
 			<div class="card">
@@ -111,8 +111,9 @@
 			</div>
 		</div>
 		
+ 			      <input type="submit" class="btn large waves effect waves-dark" style="margin-left:50px;margin-top:30px" value="buscar "/>	
  
-
+</form>
  
 
 	

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.projetoSpring.projetoAGG2.model.Contrato;
 import com.projetoSpring.projetoAGG2.model.PServico;
+import com.projetoSpring.projetoAGG2.model.Servico;
 import com.projetoSpring.projetoAGG2.model.Usuario;
 import com.projetoSpring.projetoAGG2.repository.ContratoRepository;
 import com.projetoSpring.projetoAGG2.repository.ServicoRepository;
@@ -46,7 +47,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/cadastro")
-	public ModelAndView cadastro(Usuario usuario) {
+	public ModelAndView cadastro( ) {
 		
 		ModelAndView mv = new ModelAndView("usuario/formUsuario");
 		Usuario u1 = new Usuario();
@@ -55,8 +56,16 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/")
-	public ModelAndView salvar(Usuario usuario) {
-		repository.saveAndFlush(usuario);
+	public ModelAndView salvar(Usuario usuario,Model model) {
+		ModelAndView mv = new ModelAndView("/usuario/formUsuario");
+		try {
+			service.validacao(usuario);
+			repository.saveAndFlush(usuario);
+
+		} catch (Exception E) {
+			model.addAttribute("usuarioInvalido", true);
+			return cadastro();
+		}
 		
 		return montarLogin();
 		
@@ -66,10 +75,9 @@ public class UsuarioController {
 		ModelAndView mv = new ModelAndView("usuario/menu");
 		Usuario usuario2 = repository.findByCpf(usuario.getCpf());
 		mv.addObject("servicos", svRep.findAll());
-		
 		session.setAttribute("usuario", usuario2);
 		if(service.logn(usuario.getCpf(), usuario.getSenha())!=null) { 
-			model.addAttribute("mostrarCampo", false);
+			
 			return  mv;
 			
 		}else {
@@ -88,17 +96,25 @@ public class UsuarioController {
 		return mv;
 	}
 	@PostMapping("/alterar")
-	public ModelAndView alterar(Usuario usuario, HttpSession session) {
-		ModelAndView mv = new ModelAndView("usuario/menu");
-		//pservico.setCpf(pservico.getCpf());
-		Usuario usuario2 = (Usuario) session.getAttribute("usuario");
-		//ModelAndView mv = new ModelAndView();
-		usuario.setId(usuario2.getId());
-		service.save(usuario);
-		session.setAttribute("usuario",usuario );
-		mv.addObject("pservicos", svRep.findAll());
+	public ModelAndView alterar(Usuario usuario, HttpSession session,Model model) {
+		try {
+			ModelAndView mv = new ModelAndView("usuario/menu");
+			Usuario usuario2 = (Usuario) session.getAttribute("usuario");
+			usuario.setId(usuario2.getId());
+		    
+			session.setAttribute("usuario",usuario );
+			mv.addObject("servicos", svRep.findAll());
+			service.validacao2(usuario);
+			service.save(usuario);
+			return mv;
 
-		return mv;
+		} catch (Exception e) {
+			model.addAttribute("usuarioInvalido",true);
+			return montarAlt(model,session);
+			// TODO: handle exception
+		}
+		
+
 	}
 	
 	/*@GetMapping("/menu")
@@ -112,11 +128,11 @@ public class UsuarioController {
 	}*/
 		
 	@RequestMapping("/buscar")
-	public ModelAndView buscarPS() {
+	public ModelAndView buscarPS(Servico servico,Model model) {
 		
-		 Long id = 1l;
+		
 		ModelAndView mv = new ModelAndView("usuario/buscarPS");
-		mv.addObject("pservicos", psServ.findByIdServico(id));
+		mv.addObject("pservicos", psServ.findByIdServico(servico.getId()));
 		return mv;
 	}
 	@RequestMapping("/contratar")

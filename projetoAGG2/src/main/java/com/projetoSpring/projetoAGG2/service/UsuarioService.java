@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.projetoSpring.projetoAGG2.model.PServico;
 import com.projetoSpring.projetoAGG2.model.Usuario;
 import com.projetoSpring.projetoAGG2.repository.UsuarioRepository;
 
@@ -31,6 +30,38 @@ public class UsuarioService {
 		return repository.findByCpf(cpf);
 	}
 	
+	public Usuario validacao(Usuario usuario) throws Exception{
+		
+		if(usuario==null){
+			throw new Exception("Usuario invalido");
+		}
+		if(usuario.getCpf()==null)
+			throw new Exception("Usuario invalido");
+		if(repository.findByCpf(usuario.getCpf())!= null){
+			throw new Exception("Usuario invalido");
+		}
+		if(usuario.getNome().equals(""))
+			throw new Exception("Usuario invalido");
+		if(usuario.getEmail().equals(""))
+			throw new Exception("Usuario invalido");
+		return usuario;
+		
+	}
+public Usuario validacao2(Usuario usuario) throws Exception{
+		
+		if(usuario==null){
+			throw new Exception("Usuario invalido");
+		}
+		if(usuario.getCpf()==null)
+			throw new Exception("Usuario invalido");
+		
+		if(usuario.getNome().equals(""))
+			throw new Exception("Usuario invalido");
+		if(usuario.getEmail().equals(""))
+			throw new Exception("Usuario invalido");
+		return usuario;
+		
+	}
 	
 	
 	 

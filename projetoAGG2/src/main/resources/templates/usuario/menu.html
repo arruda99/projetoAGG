@@ -87,6 +87,7 @@
   
 </div>
 
+ <form th:action="@{/usuario/buscar}" th:object="${servico}" method="post">
  <div class="row" style="">
 		<div class="col s12 m3 offset-m3">
 			<div class="card">
@@ -113,8 +114,9 @@
 			
 			
 		</div>
+					<input type="submit" class="btn large waves effect waves-dark" style="width: 200px;margin-left:120px;text-align:center" value="Buscar"/>	
 		
- 
+ </form>
 
  
 

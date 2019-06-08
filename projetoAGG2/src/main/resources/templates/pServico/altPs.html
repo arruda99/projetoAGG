@@ -68,13 +68,7 @@
 			          <input id="senha" type="password" class="validate" th:value="${session.teste.senha}" th:field="*{senha}"  />
 			          <label for="senha">Senha</label>
 			        </div>
-					<div class="input-field col s6">
-					    <select th:field="*{servico.id}">
-					      
-					      <option th:each="servico: ${servicos}" th:text="${servico.nome}" th:value="${servico.id}"></option>
-					    </select>
-					    <label>Serviços</label>
-					  </div>
+					
 					  <div class="row"></div>
 			      
 			      <div class="" >

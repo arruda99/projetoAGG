@@ -49,8 +49,16 @@ public class PsController {
 	}
 	
 	@PostMapping("/adcionar")
-	public ModelAndView salvar(PServico pservico) {
-		service.save(pservico);
+	public ModelAndView salvar(PServico pservico,Model model) {
+		
+		try {
+			service.validacao(pservico);
+			service.save(pservico);
+
+		} catch (Exception E) {
+			model.addAttribute("usuarioInvalido", true);
+			return montarCadastro();
+		}
 		
 		return montarLogin();
 		
@@ -91,6 +99,7 @@ public class PsController {
 		PServico ps = (PServico) session.getAttribute("teste");
 		//ModelAndView mv = new ModelAndView();
 		pservico.setId(ps.getId());
+		pservico.setServico(ps.getServico());
 		service.save(pservico);
 		session.setAttribute("teste",pservico );
 		return new ModelAndView("pServico/menu");
